@@ -89,7 +89,7 @@ button:active {
     padding: 1.2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 24px;
     border: 1px solid #ddd;
@@ -119,6 +119,22 @@ button:active {
     align-items: baseline;
 }
 
+.shift-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px;
+    align-items: baseline;
+}
+
+.shift-card>div {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+
+
 .shift-container img {
     width: 12px;
     height: 12x;
@@ -130,9 +146,7 @@ button:active {
     color: grey;
 }
 
-.shift-container>div {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    align-items: baseline;
+.totalhour-display p {
+    color: black;
+    font-weight: 700;
 }

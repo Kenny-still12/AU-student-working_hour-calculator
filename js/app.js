@@ -4,6 +4,47 @@ const addBtn = document.querySelector(".add-btn");
 
 const shifts = [];
 
+function renderAllShift(shifts) {
+    const weekDays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+    weekDays.forEach(day => {
+        const container = document.querySelector(`#${day} .shift-container`)
+        if (container) container.innerHTML = "";
+    })
+
+    shifts.forEach(shift => {
+        const dayName = getDayName(shift.date).toLowerCase();
+        const container = document.querySelector(`#${dayName} .shift-container`);
+        if (container) {
+            const shiftCard = document.createElement("div");
+            shiftCard.classList.add("shift-card");
+
+            shiftCard.innerHTML = `
+                <div class="hour-display">
+                    <img src="assets/icons/clock-svgrepo-com.svg" alt="">
+                    <p>${shift.startTime} - ${shift.endTime}</p>
+                </div>
+
+                <div class="break-display">
+                    <img src="assets/icons/coffee-svgrepo-com.svg" alt="">
+                    <p>break: ${shift.break} mins</p>
+                </div>
+
+                <div class="location-display">
+                    <img src="assets/icons/location-svgrepo-com.svg" alt="">
+                    <p>${shift.workPlace}</p>
+                </div>
+
+                <div class="totalhour-display">
+                    <p>${convertHour(shift.totalMin)}</p>
+                </div>
+            `;
+
+            container.append(shiftCard);
+        }
+    });
+}
+
 
 addBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -13,17 +54,18 @@ addBtn.addEventListener("click", (e) => {
         date: formData.date,
         startTime: formData.startTime,
         endTime: formData.endTime,
-        totalMin: getTotalHours(formData.startTime, formData.endTime),
+        totalMin: getTotalMins(formData.startTime, formData.endTime),
         break: formData.break,
         workPlace: formData.workPlace
     }
     shifts.push(newShift)
+    renderAllShift(shifts);
     console.log(newShift)
     console.log(convertHour(newShift.totalMin))
 })
 
 
-function getTotalHours(start, end) {
+function getTotalMins(start, end) {
 
     const [startHour, startMin] = start.split(":").map(Number);
     const [endHour, endMin] = end.split(":").map(Number)
@@ -39,8 +81,6 @@ function convertHour(totalmins) {
 }
 
 function getDayName(date) {
-    const days = ["monday", 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const days = ["sunday", 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     return days[(new Date(date).getDay())];
 }
-
-
