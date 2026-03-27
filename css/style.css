@@ -109,14 +109,30 @@ button:active {
 
 
 .shift-container {
+    background: hsl(0, 0%, 95%);
+    padding: 12px;
+    border-radius: 10px;
+    min-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
+}
+
+.shift-container img {
+    width: 12px;
+    height: 12x;
 }
 
 .shift-container p {
     font-size: 0.95rem;
     font-weight: 400;
     color: grey;
+}
+
+.shift-container>div {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: baseline;
 }
