@@ -1,3 +1,5 @@
+import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+
 const form = document.querySelector("#userForm");
 const addBtn = document.querySelector(".add-btn");
 const weekDay = document.querySelectorAll(".week-day")
@@ -65,6 +67,19 @@ addBtn.addEventListener("click", (e) => {
     console.log(newShift)
     console.log(convertHour(newShift.totalMin))
 })
+
+function testDay() {
+    const currentDay = dayjs().get('date')
+    const currentMonth = dayjs().get('month')
+    const currentYear = dayjs().get('year')
+    return `${currentDay} ${currentMonth + 1}, ${currentYear}`;
+}
+
+console.log(testDay())
+
+
+
+
 
 
 function getTotalMins(start, end) {
