@@ -3,6 +3,7 @@ import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 const form = document.querySelector("#userForm");
 const addBtn = document.querySelector(".add-btn");
 const dateContainer = document.querySelector(".date-container")
+const inputContainer = document.querySelector(".input-container")
 
 
 const shifts = [];
@@ -27,9 +28,6 @@ function renderWeekDates(offSet) {
         }
     })
 
-    if (dateContainer) {
-        dateContainer.innerHTML = `<p>${formatDate(shift.date)}</p>`
-    }
 }
 
 
@@ -75,9 +73,28 @@ function renderAllShift(shifts) {
     });
 }
 
+function displayError() {
 
-addBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+    if (inputContainer) {
+
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("error-display");
+
+        messageDiv.innerHTML = `
+                <h2>Error!</h2>
+                <p>Please input shift within this week!</p>
+        `;
+
+        inputContainer.append(messageDiv);
+    }
+
+}
+
+function clearMessage() {
+
+}
+
+function addNewShift() {
     const formData = Object.fromEntries(new FormData(form));
 
     const newShift = {
@@ -88,10 +105,23 @@ addBtn.addEventListener("click", (e) => {
         break: formData.break,
         workPlace: formData.workPlace
     }
+
+    if (!isCurrentWeek(newShift)) {
+        displayError();
+        return;
+    }
+
     shifts.push(newShift);
     renderAllShift(shifts);
-    console.log(newShift);
-    console.log(convertHour(newShift.totalMin))
+}
+
+
+addBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    //clearMessage();
+    addNewShift();
+
 })
 
 function getSelectedWeek(offSet) {
@@ -110,7 +140,15 @@ function formatDate(date) {
     return dayjs(date).format("D MMM YYYY")
 }
 
+function isCurrentWeek(shift) {
+    const shiftDate = dayjs(shift.date);
 
+    const startOfWeek = dayjs().startOf("week");
+    const endOfWeek = dayjs().endOf("week");
+
+    return shiftDate.isAfter(startOfWeek.subtract(1, "millisecond"))
+        && shiftDate.isBefore(endOfWeek.add(1, "millisecond"));
+}
 
 function isSameWeek(offSet) {
     return dayjs().isSame(getSelectedWeek(offSet), 'week')
@@ -135,3 +173,4 @@ function getDayName(date) {
     const days = ["sunday", 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     return days[(new Date(date).getDay())];
 }
+
