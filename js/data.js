@@ -5,3 +5,7 @@ export let currentWeekOffSet = 0;
 export function setShifts(newShifts) {
     shifts = newShifts;
 }
+
+export function setCurretnWeekOffset(value) {
+    currentWeekOffSet = value;
+}

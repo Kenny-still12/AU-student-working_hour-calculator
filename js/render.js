@@ -1,6 +1,6 @@
 import { shifts, setShifts, currentWeekOffSet } from "./data.js"
-import { getWeekStart, formatDate, getWeekShift, getDayName, convertHour, totalWeekHour, calculateRemainingHours, isWithinLimit } from "./app.js"
-
+import { getWeekShift, getDayName, convertHour, totalWeekHour, calculateRemainingHours, isWithinLimit } from "./logic.js"
+import { getWeekStart, formatDate, } from "./date.js"
 const inputContainer = document.querySelector(".input-container")
 const outputContainer = document.querySelector(".output-cards")
 const totalHourSpan = document.querySelector(".total-hour-span")
@@ -89,7 +89,7 @@ function renderSummary(shifts) {
     }
 }
 
-function displayError() {
+export function displayError() {
 
     if (inputContainer) {
 
