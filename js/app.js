@@ -28,7 +28,7 @@ function addNewShift() {
     }
 
     if (!isSelectedWeek(newShift, currentWeekOffSet)) {
-        displayError();
+        displayError("Please input shift within this week!");
         return;
     }
 

@@ -90,14 +90,14 @@ function renderSummary(shifts) {
     }
 }
 
-export function displayError() {
+export function displayError(MessageContent) {
 
     if (inputContainer) {
 
         errorMsg.classList.remove("hidden");
         errorMsg.innerHTML = `
                 <h2>Error!</h2>
-                <p>Please input shift within this week!</p>
+                <p>${MessageContent}</p>
         `;
 
     }
