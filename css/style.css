@@ -58,9 +58,6 @@ form {
     padding: 0 12px;
 }
 
-.hidden {
-    display: none;
-}
 
 .error-display {
     color: white;
@@ -71,6 +68,10 @@ form {
     margin-top: 12px;
     display: flex;
     flex-direction: column;
+}
+
+.hidden {
+    display: none;
 }
 
 button {
@@ -226,4 +227,37 @@ button:active {
 .remaining-hours-span {
     font-size: 1.8rem;
     font-weight: 700;
+}
+
+.status-card,
+.safe {
+    margin: 12px 0;
+    background: #F3FCF5;
+    border: 1px solid #C9F5D2;
+    display: flex;
+    gap: 12px;
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: baseline;
+    border-radius: 10px;
+}
+
+.status-image img {
+    width: 20px;
+    height: 20px;
+}
+
+.status-message {
+    display: block;
+    gap: 12px;
+}
+
+.status-message h2 {
+    color: #2A5230;
+    font-size: 1.2rem;
+}
+
+.status-message p {
+    color: #316436;
+    font-size: 0.8rem;
 }

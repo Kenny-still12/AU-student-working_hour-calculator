@@ -94,15 +94,12 @@ export function displayError() {
 
     if (inputContainer) {
 
-        const messageDiv = document.createElement("div");
-        messageDiv.classList.add("error-display");
-
-        messageDiv.innerHTML = `
+        errorMsg.classList.remove("hidden");
+        errorMsg.innerHTML = `
                 <h2>Error!</h2>
                 <p>Please input shift within this week!</p>
         `;
 
-        inputContainer.append(messageDiv);
     }
 
 }
