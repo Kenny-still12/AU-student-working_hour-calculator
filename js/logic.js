@@ -1,5 +1,5 @@
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { shifts, currentWeekOffSet, TOTAL_HOUR_IN_MIN } from "./data.js"
+import { shifts, currentWeekOffSet, TOTAL_HOUR_OF_DAY_IN_MIN } from "./data.js"
 
 
 export function getWeekShift(currentWeekOffSet) {
@@ -43,11 +43,11 @@ export function totalWeekHour() {
 
 export function calculateRemainingHours(totalHour) {
 
-    return TOTAL_HOUR_IN_MIN - totalHour;
+    return TOTAL_HOUR_OF_DAY_IN_MIN - totalHour;
 }
 
 export function isWithinLimit(totalHour) {
-    return totalHour < TOTAL_HOUR_IN_MIN ? true : false;
+    return totalHour < TOTAL_HOUR_OF_DAY_IN_MIN ? true : false;
 }
 
 
