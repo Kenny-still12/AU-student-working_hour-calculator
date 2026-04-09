@@ -101,9 +101,41 @@ function renderStatus(shifts) {
     const totalRemainingHours = calculateRemainingHours(totalWeekHour(shifts));
 
     if (statusDisplay) {
-        if (totalRemainingHours > 0) {
 
-            statusCard.classList.add("safe");
+        if (totalRemainingHours <= 0) {
+
+            statusCard.dataset.status = "dangerous";
+
+
+            statusCard.innerHTML = `
+            <div class = "status-image"><img src="/assets/icons/status-disconnected-svgrepo-com.svg" alt="">
+            </div>
+            <div class = "status-message">
+                <h2>Warning !</h2>
+                <p>You have surpassed the working hour restriction! please adjust your shift immidiately for next week. </p>
+            </div>
+            `;
+
+            statusDisplay.append(statusCard);
+
+        } else if (totalRemainingHours < 8) {
+            statusCard.dataset.status = "warning";
+
+
+            statusCard.innerHTML = `
+            <div class = "status-image"><img src="/assets/icons/status-lagging-svgrepo-com.svg" alt="">
+            </div>
+            <div class = "status-message">
+                <h2>Warning !</h2>
+                <p>You will surpass the working hour restriction if you work full day!</p>
+            </div>
+            `;
+
+            statusDisplay.append(statusCard);
+
+        } else {
+
+            statusCard.dataset.status = "safe";
 
             statusCard.innerHTML = `
             <div class = "status-image"><img src="/assets/icons/status-connected-svgrepo-com.svg" alt="">
@@ -115,6 +147,7 @@ function renderStatus(shifts) {
         `;
 
             statusDisplay.append(statusCard);
+
         }
     }
 }

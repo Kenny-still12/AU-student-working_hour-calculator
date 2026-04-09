@@ -1,4 +1,4 @@
-import { currentWeekOffSet, setCurrentWeekOffset, setShifts } from "./data.js"
+import { currentWeekOffSet, NEXT_WEEK_OFFSET, PREV_WEEK_OFFSET, setCurrentWeekOffset, setShifts } from "./data.js"
 import { refreshUI, displayError, clearMessage } from "./render.js"
 import { shifts } from "./data.js"
 import { deleteData, loadShifts, saveData } from "./storage.js"
@@ -55,14 +55,14 @@ addBtn.addEventListener("click", (e) => {
 
 prevBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    setCurrentWeekOffset(-1);
+    setCurrentWeekOffset(PREV_WEEK_OFFSET);
     console.log(currentWeekOffSet)
     refreshUI();
 })
 
 nextBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    setCurrentWeekOffset(1);
+    setCurrentWeekOffset(NEXT_WEEK_OFFSET);
     console.log(currentWeekOffSet)
     refreshUI();
 })
