@@ -111,7 +111,7 @@ function renderStatus(shifts) {
         </div>
         <div class="status-message">
             <h2>${config.title}</h2>
-            <p><${config.message}/p>
+            <p>${config.message}</p>
         </div>
     `;
 

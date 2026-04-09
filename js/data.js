@@ -17,7 +17,7 @@ export const statusConfig = {
     safe: {
         title: "Within Limit",
         message: "You are Complying with visa requirement",
-        image: "/assets/icons / status - connected - svgrepo - com.svg"
+        image: "assets/icons/status-connected-svgrepo-com.svg"
     },
     warning: {
         title: "Warning!",
