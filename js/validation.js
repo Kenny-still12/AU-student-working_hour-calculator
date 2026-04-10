@@ -1,5 +1,8 @@
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
+import { validationConfig } from "./data.js";
+import { displayError } from "./render.js";
+
 
 // checks if the pushed new shift is in the current displayed week. if it is in previous or next week, then it returns false.
 export function isSelectedWeek(shift, currentWeekOffSet) {
@@ -14,4 +17,18 @@ export function hasShift(shift, shifts) {
 
     return shifts.some((existingShift) => existingShift.date === shift.date)
 
+}
+
+export function isNegativeHour(shift) {
+    return shift.totalMin < 0;
+}
+
+export function validateShift(shift) {
+    for (const rule of validationConfig) {
+        if (!rule.check(shift)) {
+            displayError(rule.message);
+            return false;
+        }
+    }
+    return true;
 }

@@ -3,7 +3,7 @@ import { refreshUI, displayError, clearMessage } from "./render.js"
 import { shifts } from "./data.js"
 import { deleteData, loadShifts, saveData } from "./storage.js"
 import { getTotalMins } from "./logic.js"
-import { isSelectedWeek, hasShift } from "./validation.js";
+import { validateShift } from "./validation.js";
 
 
 const form = document.querySelector("#userForm");
@@ -29,15 +29,7 @@ function addNewShift() {
         workPlace: formData.workPlace
     }
 
-    if (!isSelectedWeek(newShift, currentWeekOffSet)) {
-        displayError("Please input shift within this week!");
-        return;
-    }
-
-    if (hasShift(newShift, shifts)) {
-        displayError("You aleady logged this dates shift!");
-        return;
-    }
+    if (!validateShift(newShift)) return;
 
     clearMessage();
     shifts.push(newShift);
