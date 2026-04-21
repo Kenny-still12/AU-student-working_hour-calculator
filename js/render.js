@@ -35,7 +35,7 @@ function renderWeekDates(offSet) {
             currentDay.classList.add("week-day");
             currentDay.textContent = formatDate(currentDate);
             currentDayName.textContent = `${day}`;
-            currentDayName.classList.add("week-day");
+            currentDayName.classList.add("week-day-name");
             dateContainer.append(currentDay);
             dateContainer.append(currentDayName);
         }
